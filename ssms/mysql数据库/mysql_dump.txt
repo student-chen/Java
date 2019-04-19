@@ -1,0 +1,188 @@
+-- phpMyAdmin SQL Dump
+-- version 3.0.1.1
+-- http://www.phpmyadmin.net
+--
+-- 主机: localhost
+-- 生成日期: 2013 年 01 月 25 日 06:53
+-- 服务器版本: 5.1.29
+-- PHP 版本: 5.2.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- 数据库: `scoredb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `username` varchar(20) COLLATE utf8_bin NOT NULL,
+  `password` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 导出表中的数据 `admin`
+--
+
+INSERT INTO `admin` (`username`, `password`) VALUES
+('admin', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `t_classinfo`
+--
+
+CREATE TABLE IF NOT EXISTS `t_classinfo` (
+  `classNumber` varchar(20) COLLATE utf8_bin NOT NULL,
+  `className` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `startYear` int(11) DEFAULT NULL,
+  `banzhuren` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `colleageId` int(11) DEFAULT NULL,
+  PRIMARY KEY (`classNumber`),
+  KEY `FK95BB201BB0052AB1` (`colleageId`),
+  KEY `FK95BB201B697AAE03` (`colleageId`),
+  KEY `FK95BB201B89999623` (`colleageId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 导出表中的数据 `t_classinfo`
+--
+
+INSERT INTO `t_classinfo` (`classNumber`, `className`, `startYear`, `banzhuren`, `colleageId`) VALUES
+('2012050303', '12级计算机3班', 2012, '宋青书', 1),
+('2012050304', '12级计算机4班', 2012, '柳岩', 1);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `t_colleage`
+--
+
+CREATE TABLE IF NOT EXISTS `t_colleage` (
+  `colleageId` int(11) NOT NULL AUTO_INCREMENT,
+  `colleageName` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`colleageId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `t_colleage`
+--
+
+INSERT INTO `t_colleage` (`colleageId`, `colleageName`) VALUES
+(1, '信息工程学院'),
+(2, '地球物理学院');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `t_score`
+--
+
+CREATE TABLE IF NOT EXISTS `t_score` (
+  `scoreId` int(11) NOT NULL AUTO_INCREMENT,
+  `studentNumber` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `termId` int(11) DEFAULT NULL,
+  `score` float DEFAULT NULL,
+  PRIMARY KEY (`scoreId`),
+  KEY `FK9F2F8AE7155BEDF5` (`studentNumber`),
+  KEY `FK9F2F8AE7F10DC83D` (`termId`),
+  KEY `FK9F2F8AE73C5FB863` (`studentNumber`),
+  KEY `FK9F2F8AE765DC48F` (`termId`),
+  KEY `FK9F2F8AE766B34C43` (`studentNumber`),
+  KEY `FK9F2F8AE7E175BCAF` (`termId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+
+--
+-- 导出表中的数据 `t_score`
+--
+
+INSERT INTO `t_score` (`scoreId`, `studentNumber`, `termId`, `score`) VALUES
+(1, '201205030301', 1, 98),
+(2, '201205030302', 1, 97),
+(3, '201205030303', 2, 80);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `t_student`
+--
+
+CREATE TABLE IF NOT EXISTS `t_student` (
+  `studentNumber` varchar(20) COLLATE utf8_bin NOT NULL,
+  `studentName` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `classNumber` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `sex` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `birthday` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `telphone` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `address` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`studentNumber`),
+  KEY `FKAEC90D5076AEB1FD` (`classNumber`),
+  KEY `FKAEC90D50EBE998EB` (`classNumber`),
+  KEY `FKAEC90D50CFA7B4CB` (`classNumber`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- 导出表中的数据 `t_student`
+--
+
+INSERT INTO `t_student` (`studentNumber`, `studentName`, `classNumber`, `sex`, `birthday`, `telphone`, `address`) VALUES
+('201205030301', '成龙', '2012050303', '男', '1994-01-16', '13908064703', '四川广安区'),
+('201205030302', '包子', '2012050303', '男', '1994-01-18', '13558690869', '四川成都'),
+('201205030303', '高飞', '2012050303', '男', '1995-04-11', '13558690869', '四川达州');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `t_term`
+--
+
+CREATE TABLE IF NOT EXISTS `t_term` (
+  `termId` int(11) NOT NULL AUTO_INCREMENT,
+  `termName` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`termId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `t_term`
+--
+
+INSERT INTO `t_term` (`termId`, `termName`) VALUES
+(1, '2012-2013上学期'),
+(2, '2012-2013下学期');
+
+--
+-- 限制导出的表
+--
+
+--
+-- 限制表 `t_classinfo`
+--
+ALTER TABLE `t_classinfo`
+  ADD CONSTRAINT `FK95BB201B89999623` FOREIGN KEY (`colleageId`) REFERENCES `t_colleage` (`colleageId`),
+  ADD CONSTRAINT `FK95BB201B697AAE03` FOREIGN KEY (`colleageId`) REFERENCES `t_colleage` (`colleageId`),
+  ADD CONSTRAINT `FK95BB201BB0052AB1` FOREIGN KEY (`colleageId`) REFERENCES `t_colleage` (`colleageId`);
+
+--
+-- 限制表 `t_score`
+--
+ALTER TABLE `t_score`
+  ADD CONSTRAINT `FK9F2F8AE7E175BCAF` FOREIGN KEY (`termId`) REFERENCES `t_term` (`termId`),
+  ADD CONSTRAINT `FK9F2F8AE7155BEDF5` FOREIGN KEY (`studentNumber`) REFERENCES `t_student` (`studentNumber`),
+  ADD CONSTRAINT `FK9F2F8AE73C5FB863` FOREIGN KEY (`studentNumber`) REFERENCES `t_student` (`studentNumber`),
+  ADD CONSTRAINT `FK9F2F8AE765DC48F` FOREIGN KEY (`termId`) REFERENCES `t_term` (`termId`),
+  ADD CONSTRAINT `FK9F2F8AE766B34C43` FOREIGN KEY (`studentNumber`) REFERENCES `t_student` (`studentNumber`),
+  ADD CONSTRAINT `FK9F2F8AE7F10DC83D` FOREIGN KEY (`termId`) REFERENCES `t_term` (`termId`);
+
+--
+-- 限制表 `t_student`
+--
+ALTER TABLE `t_student`
+  ADD CONSTRAINT `FKAEC90D50CFA7B4CB` FOREIGN KEY (`classNumber`) REFERENCES `t_classinfo` (`classNumber`),
+  ADD CONSTRAINT `FKAEC90D5076AEB1FD` FOREIGN KEY (`classNumber`) REFERENCES `t_classinfo` (`classNumber`),
+  ADD CONSTRAINT `FKAEC90D50EBE998EB` FOREIGN KEY (`classNumber`) REFERENCES `t_classinfo` (`classNumber`);

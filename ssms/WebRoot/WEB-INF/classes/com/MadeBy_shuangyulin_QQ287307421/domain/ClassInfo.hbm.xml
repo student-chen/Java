@@ -1,0 +1,53 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.MadeBy_shuangyulin_QQ287307421.domain">
+
+	<class name="ClassInfo" table="t_ClassInfo">
+
+          <!-- 主键班级编号 -->
+          <id name="classNumber" type="string" length="20">
+            <generator class="assigned"/>
+          </id>
+
+          <!-- 简单字符串属性: 班级名称 -->
+          <property
+            name="className"
+            column="className"
+            type="string"
+            length="20"
+          />
+
+          <!-- 简单整型属性: 入学年份 -->
+          <property
+            name="startYear"
+            column="startYear"
+            type="int"
+
+          />
+
+          <!-- 简单字符串属性: 班主任 -->
+          <property
+            name="banzhuren"
+            column="banzhuren"
+            type="string"
+            length="20"
+          />
+
+          <!-- 多对一属性: 所属学院 -->
+          <many-to-one name="collleage"
+            column="colleageId"
+            class="Colleage"
+            lazy="false"
+            outer-join="true"
+            cascade="save-update"
+          />
+
+
+		 
+		
+	</class>
+	
+</hibernate-mapping>
+ 

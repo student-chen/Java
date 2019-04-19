@@ -1,0 +1,28 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.MadeBy_shuangyulin_QQ287307421.domain">
+
+	<class name="Term" table="t_Term">
+
+          <!-- 主键学期编号 -->
+          <id name="termId" column="termId">
+            <generator class="native"/>
+          </id>
+
+          <!-- 简单字符串属性: 学期名称 -->
+          <property
+            name="termName"
+            column="termName"
+            type="string"
+            length="20"
+          />
+
+
+		 
+		
+	</class>
+	
+</hibernate-mapping>
+ 

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.MadeBy_shuangyulin_QQ287307421.domain">
+
+	<class name="Student" table="t_Student">
+
+          <!-- 主键学生学号 -->
+          <id name="studentNumber" type="string" length="20">
+            <generator class="assigned"/>
+          </id>
+
+          <!-- 简单字符串属性: 学生姓名 -->
+          <property
+            name="studentName"
+            column="studentName"
+            type="string"
+            length="20"
+          />
+
+          <!-- 多对一属性: 所在班级 -->
+          <many-to-one name="classInfo"
+            column="classNumber"
+            class="ClassInfo"
+            lazy="false"
+            outer-join="true"
+            cascade="save-update"
+          />
+
+          <!-- 简单字符串属性: 学生性别 -->
+          <property
+            name="sex"
+            column="sex"
+            type="string"
+            length="2"
+          />
+
+          <!-- 简单日期型属性: 学生生日 -->
+          <property
+            name="birthday"
+            column="birthday"
+            	type="string"
+            	length="10"
+          />
+
+          <!-- 简单字符串属性: 联系电话 -->
+          <property
+            name="telphone"
+            column="telphone"
+            type="string"
+            length="20"
+          />
+
+          <!-- 简单字符串属性: 家庭住址 -->
+          <property
+            name="address"
+            column="address"
+            type="string"
+            length="20"
+          />
+
+
+		 
+		
+	</class>
+	
+</hibernate-mapping>
+ 
