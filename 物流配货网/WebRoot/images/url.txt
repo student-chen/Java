@@ -1,4 +1,0 @@
-﻿&fahuodan=goods_insertGoods.jsp&
-&cheyuan=car_queryCarList.action&
-&huizhi=car_queryCarList.action&
-&chaxun=car_queryCarList.action&

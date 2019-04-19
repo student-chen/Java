@@ -1,0 +1,50 @@
+<%@ page contentType="text/html;charset=GB2312" %>
+	<jsp:useBean id="bookOP" scope="page" class="bean.db.bookOPBean">
+		<jsp:setProperty name="bookOP" property="bookid" value="${param.bookid}"/>
+	</jsp:useBean>
+  <tr><td align="right"><font size="2" color="#000080">
+     书名:</font></td><td><html:text property="bookname" size="40" value="${bookOP.book.bookname}" />
+     <font size="2" color="#000080">（*）</font>
+   </td></tr>
+   <tr><td align="right"><font size="2" color="#000080">
+     所属种类:</font></td><td>
+     <jsp:useBean id="booktype" class="bean.db.bookTypeOPBean" scope="page"/>
+     <c:set var="bookTypeArray" value="${booktype.bookTypeArray}"/>
+     <html:select property="typeid">
+     	<c:forEach items="${bookTypeArray}" var="bookType">
+     		<option value="${bookType.bookTypeId}" 
+     			<c:if test="${bookType.bookTypeId==bookOP.book.typeid}">
+     				selected
+     			</c:if>>${bookType.bookTypeName}
+     		</option>
+     	</c:forEach>
+     </html:select>
+     <font size="2" color="#000080">（*）</font>
+   </td></tr>
+   <tr><td align="right"><font size="2" color="#000080">
+     作者:</font></td><td><html:text property="author" value="${bookOP.book.author}"/>
+   </td></tr>
+   <tr><td align="right"><font size="2" color="#000080">
+     出版社:</font></td><td><html:text property="publisher" value="${bookOP.book.publisher}"/>
+   </td></tr>
+   <tr><td align="right"><font size="2" color="#000080">
+     价格:</font></td><td><html:text property="price" value="${bookOP.book.price}"/>
+   </td></tr>
+   <tr><td align="right"><font size="2" color="#000080">
+     折扣:</font></td><td><html:text property="price_rebate" value="${bookOP.book.price_rebate}"/>
+   </td></tr>
+   <tr><td align="right"><font size="2" color="#000080">
+     出版日期:</font></td><td>
+     <html:text property="publishdate" value="${bookOP.book.publish_date}"/>
+     <font size="2" color="#000080">（日期格式为：年-月-日）</font>
+   </td></tr>
+   <tr><td align="right"><font size="2" color="#000080">
+     页数:</font></td><td><html:text property="pagecount" value="${bookOP.book.pagecount}"/>
+   </td></tr>
+   <tr><td align="right"><font size="2" color="#000080">
+     开本:</font></td><td><html:text property="format" value="${bookOP.book.format}"/>
+   </td></tr>
+   <tr><td align="right"><font size="2" color="#000080">
+     内容简介:</font></td><td>
+     <html:textarea property="simple_content" rows="6" cols="40" value="${bookOP.book.simple_content}"/>
+   </td></tr>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<struts-config>
+	<!--formBean组件配置-->
+	<form-beans>
+		<form-bean name="addBookForm" type="form.addBookForm"/>
+		<form-bean name="dispBookInfoForm" type="form.dispBookInfoForm"/>
+		<form-bean name="uploadPicForm" type="form.uploadPicForm"/>
+		<form-bean name="dispBookTypeForm" type="form.dispBookTypeForm"/>
+		<form-bean name="addUserForm" type="form.addUserForm"/>
+		<form-bean name="userLoginForm" type="form.userLoginForm"/>
+		<form-bean name="viewOrderForm" type="form.viewOrderForm"/>
+	</form-beans>
+	<!--============action-mappings配置============-->
+	<!--====前台显示功能模块的action-mapping====-->
+	<action-mappings>
+		<!-- 增加新注册用户的action-mapping-->
+		<action path="/adduser"
+			type="action.addUserAction" name="addUserForm"
+			scope="request" validate="true"
+			input="/user/adduser.jsp">
+		    <forward name="addusererror" path="/user/adduser.jsp"/>
+		    <forward name="addusersuccess" path="/"/>			
+		</action>
+		<!-- 用户登录的action-mapping-->
+		<action path="/userlogin"
+			type="action.userLoginAction" name="userLoginForm"
+			scope="request" validate="true"
+			input="/">>		
+		</action>
+		<!-- 退出登录的action-mapping-->
+		<action path="/exitlogin"
+			type="action.userExitLoginAction">		
+		</action>
+		<!-- 将一本书放入购物车-->
+		<action path="/addbooktocar"
+			type="action.addBookToCarAction">
+		</action>
+		<!-- 将一本书拿出购物车的action-mapping-->
+		<action path="/deletebookfromcar"
+			type="action.deleteBookFromCarAction">
+		</action>
+		<!-- 生成新的订单的action-mapping-->
+		<action path="/makeOrderForm"
+			type="action.makeOrderFormAction">
+		</action>
+		<!-- 取消订单的action-mapping-->
+		<action path="/deleteOrderForm"
+			type="action.deleteOrderFormAction">
+		</action>
+		<!-- 确认订单的action-mapping-->
+		<action path="/certOrderForm"
+			type="action.certOrderFormAction">
+		</action>
+		<!-- 根据条件查询条件显示订单信息的action-mapping-->
+		<action path="/admin/orderform/orderformview"
+			type="action.viewOrderFormAction" name="viewOrderForm"
+			scope="request" validate="true"
+			input="/admin/orderform/orderformview.jsp">	
+		    <forward name="orderformview" path="/admin/orderform/orderformview.jsp"/>			
+		</action>
+	</action-mappings>
+	<!--====书藉分类管理模块====-->
+	<action-mappings>
+		<!-- 显示与增加书籍分类信息的action-mapping-->
+		<action path="/admin/booktype/booktypeview"
+			type="action.dispBookTypeAction" name="dispBookTypeForm"
+			scope="request" validate="true"
+			input="/admin/book/booktypeview.jsp">	
+		    <forward name="booktypeview" path="/admin/booktype/booktypeview.jsp"/>			
+		</action>
+		<!-- 书藉分类修改的action-mapping-->
+		<action path="/admin/booktype/updatebooktype"
+			type="action.updateBookTypeAction" name="dispBookTypeForm"
+			scope="request" validate="true"
+			input="/admin/book/updatebooktype.jsp">
+		    <forward name="updatebooktypeerror" path="/admin/booktype/updatebooktype.jsp"/>			
+		</action>
+		<!-- 书藉分类删除的action-mapping-->
+		<action path="/admin/booktype/deleteBookTypeAction"
+			type="action.deleteBookTypeAction">			
+		</action>
+	</action-mappings>
+	<!--====书藉管理模块====-->
+	<action-mappings>
+		<!-- 增加书籍信息的action-mapping-->
+		<action path="/admin/book/addBookAction"
+			type="action.addBookAction" name="addBookForm"
+			scope="request" validate="true"
+			input="/admin/book/addbook.jsp">
+      		<forward name="failure" path="/admin/book/addbook.jsp"/>
+		</action>
+		<!-- 显示书籍信息的action-mapping-->
+		<action path="/admin/book/dispBookInfo"
+			type="action.dispBookInfoAction" name="dispBookInfoForm"
+			scope="request" validate="true"
+			input="/admin/book/modibook.jsp">
+			<forward name="dispBooksInfo" path="/admin/book/modibook.jsp"/>			
+		</action>
+		<!-- 上传图片时显示书籍信息的action-mapping-->
+		<action path="/admin/book/uploadPicDispBookInfo"
+			type="action.dispBookInfoAction" name="dispBookInfoForm"
+			scope="request" validate="true"
+			input="/admin/book/uploadpicbook.jsp">
+			<forward name="dispBooksInfo" path="/admin/book/uploadpicbook.jsp"/>			
+		</action>
+		<!-- 上传图片的action-mapping-->
+		<action path="/admin/book/uploadPic"
+			type="action.uploadPicAction" name="uploadPicForm"
+			scope="request" validate="true"
+			input="/admin/book/uploadpic.jsp">			
+		</action>
+		<!-- 删除书藉信息的action-mapping-->
+		<action path="/admin/book/deleteBookAction"
+			type="action.deleteBookAction">			
+		</action>
+		<!--修改书藉信息的action-mapping-->
+		<action path="/admin/book/updateBookAction"
+			type="action.updateBookAction" name="addBookForm"
+			scope="request" validate="true"
+			input="/admin/book/updateBook.jsp">
+      		<forward name="failure" path="/admin/book/updateBook.jsp"/>
+		</action>
+	</action-mappings>
+	<!--====订单管理模块====-->
+	<action-mappings>
+		<!-- 修改订单状态的action-mapping-->
+		<action path="/admin/orderform/modiStatusAction"
+			type="action.modiStatusAction">	
+			<forward name="orderformview" path="/admin/orderform/orderformview.jsp"/>		
+		</action>
+	</action-mappings>
+	<!-- 消息资源配置-->
+	<message-resources parameter="errors_zh"/>
+	<!-- 全局转发配置-->
+	<global-forwards>
+		<forward name="success" path="/admin/common/success.jsp"/>
+		<forward name="failure" path="/admin/common/failure.jsp"/>
+		<forward name="buycar" path="/buy/viewBuyCar.jsp"/>
+		<forward name="orderForm" path="/buy/viewOrderForm.jsp"/>
+		<forward name="firstpage" path="/"/>
+	</global-forwards>
+</struts-config>

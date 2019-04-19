@@ -1,0 +1,1 @@
+native2ascii -encoding gb2312 errors.properties >errors_zh.properties
